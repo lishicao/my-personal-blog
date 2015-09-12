@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="CurrencyType" type="exchange.common.entity.CurrencyType"/>
+        <typeAlias alias="ExchangeRate" type="exchange.common.entity.ExchangeRate"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="exchange.mapper/CurrencyTypeMapper.xml" />
+        <mapper resource="exchange.mapper/CurrencyMapper.xml" />
+    </mappers>
+
+</configuration>
