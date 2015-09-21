@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="exchange.mapper.CurrencyTypeMapper">
+
+    <resultMap type="CurrencyType" id="TypeResultMap">
+        <id property="id" column="id"/>
+        <result property="currencyName" column="currency_name"/>
+    </resultMap>
+
+
+    <select id="getCurrencyTypeList"  resultType="exchange.common.entity.CurrencyType" resultMap="TypeResultMap">
+            SELECT * from t_currency_type
+    </select>
+
+</mapper>
