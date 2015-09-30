@@ -14,6 +14,15 @@ import javax.servlet.http.HttpSession;
  * time 下午11:06
  */
 public class loginInterceptor implements HandlerInterceptor {
+
+    /**
+     * 拦截未登录进入admin路径的
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception{
         HttpSession session = request.getSession();
