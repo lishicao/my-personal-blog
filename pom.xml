@@ -186,6 +186,22 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-    </dependencies>
 
+    </dependencies>
+    <build>
+        <finalName>lishicao</finalName>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>releases</name>
+            <url>http://maven.dev.net/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>snapshots</name>
+            <url>http://maven.dev.net/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
