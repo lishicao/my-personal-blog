@@ -31,11 +31,11 @@ public class LoginController {
         try {
             if (loginService.varifyUser(username, password) == true) {
                 session.setAttribute("username",username);
-                return "/admin/index";
+                return "redirect:/admin/index";
             }
             else return "/login/login";
-
         }catch (Exception ee ){
+            model.addAttribute("errorMassage" , ee.getMessage() );
             return "/error";
         }
     }

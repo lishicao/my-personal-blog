@@ -15,7 +15,7 @@
           <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
           <meta name="description" content="">
           <meta name="author" content="">
-
+          <link rel="icon" href="../../../resources/self/image/cat.ico">
           <title>Login</title>
 
           <!-- Bootstrap core CSS -->
