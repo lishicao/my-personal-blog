@@ -1,0 +1,38 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mappers.blog.BlogMapper">
+
+    <resultMap id="blogMap" type="com.blog.common.entity.blog.Blog">
+        <result property="id" column="id"></result>
+        <result property="title" column="title"></result>
+        <result property="content" column="content"></result>
+        <result property="htmlContent" column="content_html"></result>
+        <result property="classificationId" column="classification_id"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="clickCount" column="click_count"></result>
+    </resultMap>
+
+    <select id="getBlogs" parameterType="com.blog.common.dto.blog.QueryBlogCondition" resultMap="blogMap">
+        SELECT * FROM t_blog
+        WHERE "1"="1"
+        <if test="classificationId != null and classificationId != 0 ">
+            AND t_label.classification_id = #{classificationId}
+        </if>
+        <if test="labelId != null and labelId != 0 ">
+            AND t_blog.id IN ( SELECT t_label.id FROM t_label WHERE t_label.id = #{labelId} )
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{start},#{pageSize}
+    </select>
+
+    <select id="getBlogCount" resultType="int">
+        SELECT count(*) FROM  t_blog
+        WHERE "1"="1"
+        <if test="classificationId != null and classificationId != 0 ">
+            AND t_label.classification_id = #{classificationId}
+        </if>
+        <if test="labelId != null and labelId != 0 ">
+            AND t_blog.id IN ( SELECT t_label.id FROM t_label WHERE t_label.id = #{labelId} )
+        </if>
+    </select>
+
+</mapper>

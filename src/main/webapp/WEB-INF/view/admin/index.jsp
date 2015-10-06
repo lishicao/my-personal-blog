@@ -21,14 +21,8 @@
     <script src="../../../resources/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../../resources/assets/js/ie-emulation-modes-warning.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
     <script src="../../../resources/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
-    <script type="text/javascript" src="../../../resources/self/js/jquery-1.11.3.js"></script>
+    <script src="../../../resources/self/js/jquery-1.11.3.js"></script>
 </head>
 
 <body>
@@ -75,7 +69,7 @@
             </ul>
 
             <ul class="nav nav-sidebar">
-                <li><a href="">Copmment</a></li>
+                <li><a href="">Comment</a></li>
                 <li><a href="">Write About Me</a></li>
             </ul>
         </div>
@@ -84,32 +78,7 @@
 
             <h2 class="sub-header">Section title</h2>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>title</th>
-                        <th>createTime</th>
-                        <th>class</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>amet</td>
-                        <td>consectetur</td>
-                        <td>adipiscing</td>
-                        <td>elit</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div id="example"></div>
             </div>
         </div>
     </div>
@@ -118,12 +87,12 @@
 
 <script>
     $(function () {
-        var carId = 1;
+//        var carId = 1;
         $.ajax({
-            url: "/OA/Setting/GetDate",
+            url: "/admin/listBlog",
             datatype: 'json',
             type: "Post",
-            data: "id=" + carId,
+            data: "page=" + 1,
             success: function (data) {
                 if (data != null) {
                     $.each(eval("(" + data + ")").list, function (index, item) { //遍历返回的json
@@ -155,9 +124,9 @@
                         $("#list").append('</table>');
                     });
                     var pageCount = eval("(" + data + ")").pageCount; //取到pageCount的值(把返回数据转成object类型)
-                    var currentPage = eval("(" + data + ")").CurrentPage; //得到urrentPage
+                    var currentPage = eval("(" + data + ")").CurrentPage; //得到CurrentPage
                     var options = {
-                        bootstrapMajorVersion: 2, //版本
+                        bootstrapMajorVersion: 3, //版本
                         currentPage: currentPage, //当前页数
                         totalPages: pageCount, //总页数
                         itemTexts: function (type, page, current) {
@@ -176,7 +145,8 @@
                         },//点击事件，用于通过Ajax来刷新整个list列表
                         onPageClicked: function (event, originalEvent, type, page) {
                             $.ajax({
-                                url: "/OA/Setting/GetDate?id=" + page,
+                                url: "/admin/listBlog",
+                                dataType: "json",
                                 type: "Post",
                                 data: "page=" + page,
                                 success: function (data1) {
@@ -223,7 +193,6 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../../../resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="../../../resources/assets/js/ie10-viewport-bug-workaround.js"></script>
 
