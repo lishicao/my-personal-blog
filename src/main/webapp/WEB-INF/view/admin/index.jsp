@@ -17,7 +17,8 @@
     <link href="../../../resources/self/css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../../resources/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="../../../resources/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../../resources/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -25,6 +26,9 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="../../../resources/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+    <script type="text/javascript" src="../../../resources/self/js/jquery-1.11.3.js"></script>
 </head>
 
 <body>
@@ -83,11 +87,10 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>id</th>
+                        <th>title</th>
+                        <th>createTime</th>
+                        <th>class</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -105,104 +108,6 @@
                         <td>adipiscing</td>
                         <td>elit</td>
                     </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>Integer</td>
-                        <td>nec</td>
-                        <td>odio</td>
-                        <td>Praesent</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>libero</td>
-                        <td>Sed</td>
-                        <td>cursus</td>
-                        <td>ante</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>dapibus</td>
-                        <td>diam</td>
-                        <td>Sed</td>
-                        <td>nisi</td>
-                    </tr>
-                    <tr>
-                        <td>1,005</td>
-                        <td>Nulla</td>
-                        <td>quis</td>
-                        <td>sem</td>
-                        <td>at</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>nibh</td>
-                        <td>elementum</td>
-                        <td>imperdiet</td>
-                        <td>Duis</td>
-                    </tr>
-                    <tr>
-                        <td>1,007</td>
-                        <td>sagittis</td>
-                        <td>ipsum</td>
-                        <td>Praesent</td>
-                        <td>mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>Fusce</td>
-                        <td>nec</td>
-                        <td>tellus</td>
-                        <td>sed</td>
-                    </tr>
-                    <tr>
-                        <td>1,009</td>
-                        <td>augue</td>
-                        <td>semper</td>
-                        <td>porta</td>
-                        <td>Mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>massa</td>
-                        <td>Vestibulum</td>
-                        <td>lacinia</td>
-                        <td>arcu</td>
-                    </tr>
-                    <tr>
-                        <td>1,011</td>
-                        <td>eget</td>
-                        <td>nulla</td>
-                        <td>Class</td>
-                        <td>aptent</td>
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>taciti</td>
-                        <td>sociosqu</td>
-                        <td>ad</td>
-                        <td>litora</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>torquent</td>
-                        <td>per</td>
-                        <td>conubia</td>
-                        <td>nostra</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>per</td>
-                        <td>inceptos</td>
-                        <td>himenaeos</td>
-                        <td>Curabitur</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>sodales</td>
-                        <td>ligula</td>
-                        <td>in</td>
-                        <td>libero</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -210,14 +115,117 @@
     </div>
 </div>
 
+
+<script>
+    $(function () {
+        var carId = 1;
+        $.ajax({
+            url: "/OA/Setting/GetDate",
+            datatype: 'json',
+            type: "Post",
+            data: "id=" + carId,
+            success: function (data) {
+                if (data != null) {
+                    $.each(eval("(" + data + ")").list, function (index, item) { //遍历返回的json
+                        $("#list").append('<table id="data_table" class="table table-striped">');
+                        $("#list").append('<thead>');
+                        $("#list").append('<tr>');
+                        $("#list").append('<th>Id</th>');
+                        $("#list").append('<th>部门名称</th>');
+                        $("#list").append('<th>备注</th>');
+                        $("#list").append('<th> </th>');
+                        $("#list").append('</tr>');
+                        $("#list").append('</thead>');
+                        $("#list").append('<tbody>');
+                        $("#list").append('<tr>');
+                        $("#list").append('<td>' + item.Id + '</td>');
+                        $("#list").append('<td>' + item.Name + '</td>');
+                        $("#list").append('<td>备注</td>');
+                        $("#list").append('<td>');
+                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">修改</button>');
+                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">删除</button>');
+                        $("#list").append('</td>');
+                        $("#list").append('</tr>');
+                        $("#list").append('</tbody>');
+
+                        $("#list").append('<tr>');
+                        $("#list").append('<td>内容</td>');
+                        $("#list").append('<td>' + item.Message + '</td>');
+                        $("#list").append('</tr>');
+                        $("#list").append('</table>');
+                    });
+                    var pageCount = eval("(" + data + ")").pageCount; //取到pageCount的值(把返回数据转成object类型)
+                    var currentPage = eval("(" + data + ")").CurrentPage; //得到urrentPage
+                    var options = {
+                        bootstrapMajorVersion: 2, //版本
+                        currentPage: currentPage, //当前页数
+                        totalPages: pageCount, //总页数
+                        itemTexts: function (type, page, current) {
+                            switch (type) {
+                                case "first":
+                                    return "首页";
+                                case "prev":
+                                    return "上一页";
+                                case "next":
+                                    return "下一页";
+                                case "last":
+                                    return "末页";
+                                case "page":
+                                    return page;
+                            }
+                        },//点击事件，用于通过Ajax来刷新整个list列表
+                        onPageClicked: function (event, originalEvent, type, page) {
+                            $.ajax({
+                                url: "/OA/Setting/GetDate?id=" + page,
+                                type: "Post",
+                                data: "page=" + page,
+                                success: function (data1) {
+                                    if (data1 != null) {
+                                        $.each(eval("(" + data + ")").list, function (index, item) { //遍历返回的json
+                                            $("#list").append('<table id="data_table" class="table table-striped">');
+                                            $("#list").append('<thead>');
+                                            $("#list").append('<tr>');
+                                            $("#list").append('<th>Id</th>');
+                                            $("#list").append('<th>部门名称</th>');
+                                            $("#list").append('<th>备注</th>');
+                                            $("#list").append('<th> </th>');
+                                            $("#list").append('</tr>');
+                                            $("#list").append('</thead>');
+                                            $("#list").append('<tbody>');
+                                            $("#list").append('<tr>');
+                                            $("#list").append('<td>' + item.Id + '</td>');
+                                            $("#list").append('<td>' + item.Name + '</td>');
+                                            $("#list").append('<td>备注</td>');
+                                            $("#list").append('<td>');
+                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">修改</button>');
+                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">删除</button>');
+                                            $("#list").append('</td>');
+                                            $("#list").append('</tr>');
+                                            $("#list").append('</tbody>');
+
+                                            $("#list").append('<tr>');
+                                            $("#list").append('<td>内容</td>');
+                                            $("#list").append('<td>' + item.Message + '</td>');
+                                            $("#list").append('</tr>');
+                                            $("#list").append('</table>');
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    };
+                    $('#example').bootstrapPaginator(options);
+                }
+            }
+        });
+    })
+</script>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../../../resources/bootstrap/js/bootstrap.min.js"></script>
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<%--<script src="../../../resources/assets/js/vendor/holder.min.js"></script>--%>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../../../resources/assets/js/ie10-viewport-bug-workaround.js"></script>
+
 </body>
 </html>
