@@ -1,22 +1,22 @@
 /*
- Navicat MySQL Data Transfer
+Navicat MySQL Data Transfer
 
- Source Server         : nenu_oa
- Source Server Version : 50623
- Source Host           : localhost
- Source Database       : my_blog
+Source Server         : localhost
+Source Server Version : 50626
+Source Host           : 127.0.0.1:3306
+Source Database       : my_blog
 
- Target Server Version : 50623
- File Encoding         : utf-8
+Target Server Type    : MYSQL
+Target Server Version : 50626
+File Encoding         : 65001
 
- Date: 09/30/2015 23:59:59 PM
+Date: 2015-10-07 13:23:41
 */
 
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
---  Table structure for `t_about_me`
+-- Table structure for t_about_me
 -- ----------------------------
 DROP TABLE IF EXISTS `t_about_me`;
 CREATE TABLE `t_about_me` (
@@ -27,7 +27,11 @@ CREATE TABLE `t_about_me` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_blog`
+-- Records of t_about_me
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_blog
 -- ----------------------------
 DROP TABLE IF EXISTS `t_blog`;
 CREATE TABLE `t_blog` (
@@ -39,10 +43,15 @@ CREATE TABLE `t_blog` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `click_count` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_blog_classification`
+-- Records of t_blog
+-- ----------------------------
+INSERT INTO `t_blog` VALUES ('1', 'aa', 'aa', 'aa', '1', '2015-10-07 02:41:28', '1');
+
+-- ----------------------------
+-- Table structure for t_blog_classification
 -- ----------------------------
 DROP TABLE IF EXISTS `t_blog_classification`;
 CREATE TABLE `t_blog_classification` (
@@ -52,7 +61,11 @@ CREATE TABLE `t_blog_classification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_blog_label`
+-- Records of t_blog_classification
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_blog_label
 -- ----------------------------
 DROP TABLE IF EXISTS `t_blog_label`;
 CREATE TABLE `t_blog_label` (
@@ -63,7 +76,11 @@ CREATE TABLE `t_blog_label` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_comments`
+-- Records of t_blog_label
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_comments
 -- ----------------------------
 DROP TABLE IF EXISTS `t_comments`;
 CREATE TABLE `t_comments` (
@@ -77,7 +94,11 @@ CREATE TABLE `t_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_lable`
+-- Records of t_comments
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_lable
 -- ----------------------------
 DROP TABLE IF EXISTS `t_lable`;
 CREATE TABLE `t_lable` (
@@ -87,17 +108,11 @@ CREATE TABLE `t_lable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_resource_classification`
+-- Records of t_lable
 -- ----------------------------
-DROP TABLE IF EXISTS `t_resource_classification`;
-CREATE TABLE `t_resource_classification` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `classification_name` char(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_resources`
+-- Table structure for t_resources
 -- ----------------------------
 DROP TABLE IF EXISTS `t_resources`;
 CREATE TABLE `t_resources` (
@@ -109,7 +124,25 @@ CREATE TABLE `t_resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `t_users`
+-- Records of t_resources
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_resource_classification
+-- ----------------------------
+DROP TABLE IF EXISTS `t_resource_classification`;
+CREATE TABLE `t_resource_classification` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `classification_name` char(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_resource_classification
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_users
 -- ----------------------------
 DROP TABLE IF EXISTS `t_users`;
 CREATE TABLE `t_users` (
@@ -120,14 +153,12 @@ CREATE TABLE `t_users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Records of `t_users`
+-- Records of t_users
 -- ----------------------------
-BEGIN;
 INSERT INTO `t_users` VALUES ('1', 'lishicao', 'aa0e0e3e358e6a464e8f35799c30ba5b');
-COMMIT;
 
 -- ----------------------------
---  Table structure for `t_visitor_count`
+-- Table structure for t_visitor_count
 -- ----------------------------
 DROP TABLE IF EXISTS `t_visitor_count`;
 CREATE TABLE `t_visitor_count` (
@@ -136,4 +167,6 @@ CREATE TABLE `t_visitor_count` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-SET FOREIGN_KEY_CHECKS = 1;
+-- ----------------------------
+-- Records of t_visitor_count
+-- ----------------------------
