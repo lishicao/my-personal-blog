@@ -74,12 +74,26 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">Blogs</h1>
 
-            <h2 class="sub-header">Section title</h2>
             <div class="table-responsive">
-                <div id="example"></div>
+                <table id="data_table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>title</th>
+                        <th>createTime</th>
+                        <th>clickCount</th>
+                        <th>operation</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list">
+
+                    </tbody>
+                </table>
             </div>
+            <%--<div id="example"></div>--%>
+
         </div>
     </div>
 </div>
@@ -95,36 +109,21 @@
             data: "page=" + 1,
             success: function (data) {
                 if (data != null) {
-                    $.each(eval("(" + data + ")").list, function (index, item) {
-                        $("#list").append('<table id="data_table" class="table table-striped">');
-                        $("#list").append('<thead>');
-                        $("#list").append('<tr>');
-                        $("#list").append('<th>Id</th>');
-                        $("#list").append('<th>��������</th>');
-                        $("#list").append('<th>��ע</th>');
-                        $("#list").append('<th> </th>');
-                        $("#list").append('</tr>');
-                        $("#list").append('</thead>');
-                        $("#list").append('<tbody>');
-                        $("#list").append('<tr>');
-                        $("#list").append('<td>' + item.Id + '</td>');
-                        $("#list").append('<td>' + item.Name + '</td>');
-                        $("#list").append('<td>��ע</td>');
-                        $("#list").append('<td>');
-                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">�޸�</button>');
-                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">ɾ��</button>');
-                        $("#list").append('</td>');
-                        $("#list").append('</tr>');
-                        $("#list").append('</tbody>');
+                    $.each(data.list, function (index, item) {
 
-                        $("#list").append('<tr>');
-                        $("#list").append('<td>����</td>');
-                        $("#list").append('<td>' + item.Message + '</td>');
-                        $("#list").append('</tr>');
-                        $("#list").append('</table>');
+                        $("#list").append(  "<tr>" +
+                                            "<td>#</td>" +
+                                            "<td>" + item.title + "</td>" +
+                                            "<td>" + item.createTime + "</td>" +
+                                            "<td>" + item.clickCount + "</td>" +
+                                            "<td>" +
+                                            '<button class="btn" onclick="Edit(' + item.id + ' );">view</button>' +
+                                            '<button class="btn" onclick="Edit(' + item.id + ' );">edit</button>' +
+                                            '<button class="btn" onclick="Edit(' + item.id + ' );">delete</button>'+
+                                            "</tr>");
                     });
-                    var pageCount = eval("(" + data + ")").pageCount;       //
-                    var currentPage = eval("(" + data + ")").currentPage;   //
+                    var pageCount = data.pageCount;       //
+                    var currentPage = data.currentPage;   //
                     var options = {
                         bootstrapMajorVersion: 3,   //版本
                         currentPage: currentPage,   //当前页数
@@ -152,40 +151,24 @@
                                 data: "page=" + page,
                                 success: function (data1) {
                                     if (data1 != null) {
-                                        $.each(eval("(" + data + ")").list, function (index, item) {
-                                            $("#list").append('<table id="data_table" class="table table-striped">');
-                                            $("#list").append('<thead>');
-                                            $("#list").append('<tr>');
-                                            $("#list").append('<th>Id</th>');
-                                            $("#list").append('<th>��������</th>');
-                                            $("#list").append('<th>��ע</th>');
-                                            $("#list").append('<th> </th>');
-                                            $("#list").append('</tr>');
-                                            $("#list").append('</thead>');
-                                            $("#list").append('<tbody>');
-                                            $("#list").append('<tr>');
-                                            $("#list").append('<td>' + item.Id + '</td>');
-                                            $("#list").append('<td>' + item.Name + '</td>');
-                                            $("#list").append('<td>��ע</td>');
-                                            $("#list").append('<td>');
-                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">�޸�</button>');
-                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">ɾ��</button>');
-                                            $("#list").append('</td>');
-                                            $("#list").append('</tr>');
-                                            $("#list").append('</tbody>');
-
-                                            $("#list").append('<tr>');
-                                            $("#list").append('<td>����</td>');
-                                            $("#list").append('<td>' + item.Message + '</td>');
-                                            $("#list").append('</tr>');
-                                            $("#list").append('</table>');
+                                        $.each(data.list, function (index, item) {
+                                            $("#list").append(  "<tr>" +
+                                                    "<td>#</td>" +
+                                                    "<td>" + item.title + "</td>" +
+                                                    "<td>" + item.createTime + "</td>" +
+                                                    "<td>" + item.clickCount + "</td>" +
+                                                    "<td>" +
+                                                    '<button class="btn" onclick="Edit(' + item.id + ' );">view</button>' +
+                                                    '<button class="btn" onclick="Edit(' + item.id + ' );">edit</button>' +
+                                                    '<button class="btn" onclick="Edit(' + item.id + ' );">delete</button>'+
+                                                    "</tr>");
                                         });
                                     }
                                 }
                             });
                         }
                     };
-                    $('#example').bootstrapPaginator(options);
+//                    $('#example').bootstrapPaginator(options);
                 }
             }
         });
@@ -196,6 +179,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="../../../resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="../../../resources/assets/js/ie10-viewport-bug-workaround.js"></script>
-
+<script src="../../../resources/assets/js/vendor/holder.min.js"></script>
+<script src="../../../resources/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

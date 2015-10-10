@@ -22,7 +22,7 @@
         <if test="labelId != null and labelId != 0 ">
             AND t_blog.id IN ( SELECT t_label.id FROM t_label WHERE t_label.id = #{labelId} )
         </if>
-        ORDER BY create_time DESC
+        ORDER BY create_time
         LIMIT #{start},#{pageSize}
     </select>
 

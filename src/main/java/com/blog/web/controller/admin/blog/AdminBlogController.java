@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -43,15 +44,19 @@ public class AdminBlogController {
             List<Blog> blogs = blogService.getBlogs( queryBlogCondition , pageSize );
 
             for( Blog blog : blogs ) {
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date date=blog.getCreateTime();
+                String createTime=sdf.format(date);
+
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put( "id" , blog.getId() );
                 jsonObject.put( "title" , blog.getTitle() );
-                jsonObject.put( "createTime" , blog.getCreateTime() );
+                jsonObject.put( "createTime" , createTime );
                 jsonObject.put( "clickCount" , blog.getClickCount() );
                 jsonArray.add( jsonObject) ;
             }
 
-            json.put("data",jsonArray);
+            json.put("list",jsonArray);
 
             return json;
         }
