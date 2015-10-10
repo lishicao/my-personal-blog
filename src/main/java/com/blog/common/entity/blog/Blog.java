@@ -1,6 +1,7 @@
 package com.blog.common.entity.blog;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by lishi on 2015/10/7.
@@ -13,6 +14,7 @@ public class Blog {
     private Integer classificationId;
     private Date createTime;
     private Integer clickCount;
+    private List<Label> labels;
 
     public Integer getId() {
         return id;
@@ -68,5 +70,13 @@ public class Blog {
 
     public void setClickCount(Integer clickCount) {
         this.clickCount = clickCount;
+    }
+
+    public List<Label> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
     }
 }

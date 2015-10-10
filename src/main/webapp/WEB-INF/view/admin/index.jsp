@@ -95,13 +95,13 @@
             data: "page=" + 1,
             success: function (data) {
                 if (data != null) {
-                    $.each(eval("(" + data + ")").list, function (index, item) { //±éÀú·µ»ØµÄjson
+                    $.each(eval("(" + data + ")").list, function (index, item) {
                         $("#list").append('<table id="data_table" class="table table-striped">');
                         $("#list").append('<thead>');
                         $("#list").append('<tr>');
                         $("#list").append('<th>Id</th>');
-                        $("#list").append('<th>²¿ÃÅÃû³Æ</th>');
-                        $("#list").append('<th>±¸×¢</th>');
+                        $("#list").append('<th>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</th>');
+                        $("#list").append('<th>ï¿½ï¿½×¢</th>');
                         $("#list").append('<th> </th>');
                         $("#list").append('</tr>');
                         $("#list").append('</thead>');
@@ -109,40 +109,41 @@
                         $("#list").append('<tr>');
                         $("#list").append('<td>' + item.Id + '</td>');
                         $("#list").append('<td>' + item.Name + '</td>');
-                        $("#list").append('<td>±¸×¢</td>');
+                        $("#list").append('<td>ï¿½ï¿½×¢</td>');
                         $("#list").append('<td>');
-                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">ĞŞ¸Ä</button>');
-                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">É¾³ı</button>');
+                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">ï¿½Ş¸ï¿½</button>');
+                        $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">É¾ï¿½ï¿½</button>');
                         $("#list").append('</td>');
                         $("#list").append('</tr>');
                         $("#list").append('</tbody>');
 
                         $("#list").append('<tr>');
-                        $("#list").append('<td>ÄÚÈİ</td>');
+                        $("#list").append('<td>ï¿½ï¿½ï¿½ï¿½</td>');
                         $("#list").append('<td>' + item.Message + '</td>');
                         $("#list").append('</tr>');
                         $("#list").append('</table>');
                     });
-                    var pageCount = eval("(" + data + ")").pageCount; //È¡µ½pageCountµÄÖµ(°Ñ·µ»ØÊı¾İ×ª³ÉobjectÀàĞÍ)
-                    var currentPage = eval("(" + data + ")").CurrentPage; //µÃµ½CurrentPage
+                    var pageCount = eval("(" + data + ")").pageCount;       //
+                    var currentPage = eval("(" + data + ")").currentPage;   //
                     var options = {
-                        bootstrapMajorVersion: 3, //°æ±¾
-                        currentPage: currentPage, //µ±Ç°Ò³Êı
-                        totalPages: pageCount, //×ÜÒ³Êı
+                        bootstrapMajorVersion: 3,   //ç‰ˆæœ¬
+                        currentPage: currentPage,   //å½“å‰é¡µæ•°
+                        totalPages: pageCount,      //æ€»é¡µæ•°
                         itemTexts: function (type, page, current) {
                             switch (type) {
                                 case "first":
-                                    return "Ê×Ò³";
+                                    return "é¦–é¡µ";
                                 case "prev":
-                                    return "ÉÏÒ»Ò³";
+                                    return "ä¸Šä¸€é¡µ";
                                 case "next":
-                                    return "ÏÂÒ»Ò³";
+                                    return "ä¸‹ä¸€é¡µ";
                                 case "last":
-                                    return "Ä©Ò³";
+                                    return "æœ«é¡µ";
                                 case "page":
                                     return page;
                             }
-                        },//µã»÷ÊÂ¼ş£¬ÓÃÓÚÍ¨¹ıAjaxÀ´Ë¢ĞÂÕû¸ölistÁĞ±í
+                        },
+                        //ç‚¹å‡»äº‹ä»¶
                         onPageClicked: function (event, originalEvent, type, page) {
                             $.ajax({
                                 url: "/admin/listBlog",
@@ -151,13 +152,13 @@
                                 data: "page=" + page,
                                 success: function (data1) {
                                     if (data1 != null) {
-                                        $.each(eval("(" + data + ")").list, function (index, item) { //±éÀú·µ»ØµÄjson
+                                        $.each(eval("(" + data + ")").list, function (index, item) {
                                             $("#list").append('<table id="data_table" class="table table-striped">');
                                             $("#list").append('<thead>');
                                             $("#list").append('<tr>');
                                             $("#list").append('<th>Id</th>');
-                                            $("#list").append('<th>²¿ÃÅÃû³Æ</th>');
-                                            $("#list").append('<th>±¸×¢</th>');
+                                            $("#list").append('<th>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</th>');
+                                            $("#list").append('<th>ï¿½ï¿½×¢</th>');
                                             $("#list").append('<th> </th>');
                                             $("#list").append('</tr>');
                                             $("#list").append('</thead>');
@@ -165,16 +166,16 @@
                                             $("#list").append('<tr>');
                                             $("#list").append('<td>' + item.Id + '</td>');
                                             $("#list").append('<td>' + item.Name + '</td>');
-                                            $("#list").append('<td>±¸×¢</td>');
+                                            $("#list").append('<td>ï¿½ï¿½×¢</td>');
                                             $("#list").append('<td>');
-                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">ĞŞ¸Ä</button>');
-                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">É¾³ı</button>');
+                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">ï¿½Ş¸ï¿½</button>');
+                                            $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.Id + ' );">É¾ï¿½ï¿½</button>');
                                             $("#list").append('</td>');
                                             $("#list").append('</tr>');
                                             $("#list").append('</tbody>');
 
                                             $("#list").append('<tr>');
-                                            $("#list").append('<td>ÄÚÈİ</td>');
+                                            $("#list").append('<td>ï¿½ï¿½ï¿½ï¿½</td>');
                                             $("#list").append('<td>' + item.Message + '</td>');
                                             $("#list").append('</tr>');
                                             $("#list").append('</table>');

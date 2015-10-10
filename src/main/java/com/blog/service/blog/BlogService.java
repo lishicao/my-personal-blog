@@ -23,6 +23,12 @@ public class BlogService {
         Integer classficationId = queryBlogCondition.getClassificationId();
         Integer labelId = queryBlogCondition.getLabelId();
         Integer start = (queryBlogCondition.getPage() -1) * pageSize;
+
+        List<Blog> blogs = blogMapper.getBlogs( start, pageSize, classficationId, labelId);
+        for( Blog blog : blogs){
+            blog.setLabels( blogMapper.getLabels(blog.getId()) );
+        }
+
         return blogMapper.getBlogs( start, pageSize, classficationId, labelId);
     }
 }
