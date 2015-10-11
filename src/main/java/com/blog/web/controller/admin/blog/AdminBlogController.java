@@ -24,7 +24,7 @@ public class AdminBlogController {
     @Autowired
     BlogService blogService;
 
-    Integer pageSize = 10 ;
+    Integer pageSize = 8 ;
 
     @RequestMapping( value = "listBlog")
     public @ResponseBody JSONObject getBlogWithPage( QueryBlogCondition queryBlogCondition ){

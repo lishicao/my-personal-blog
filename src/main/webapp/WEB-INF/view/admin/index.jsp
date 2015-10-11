@@ -21,8 +21,8 @@
     <script src="../../../resources/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../../resources/assets/js/ie-emulation-modes-warning.js"></script>
 
-    <script src="../../../resources/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
     <script src="../../../resources/self/js/jquery-1.11.3.js"></script>
+    <script src="../../../resources/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
 </head>
 
 <body>
@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="#">Blogs<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">New Blog</a></li>
                 <li><a href="#">Blog Classification</a></li>
                 <li><a href="#">New Blog Classification</a></li>
@@ -74,10 +74,9 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Blogs</h1>
-
+            <h3 class="page-header">Blogs</h3>
             <div class="table-responsive">
-                <table id="data_table" class="table table-striped">
+                <table id="data_table" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -92,7 +91,7 @@
                     </tbody>
                 </table>
             </div>
-            <%--<div id="example"></div>--%>
+            <ul id="example"></ul>
 
         </div>
     </div>
@@ -105,21 +104,21 @@
         $.ajax({
             url: "/admin/listBlog",
             datatype: 'json',
-            type: "Post",
+            type: "Pos  t",
             data: "page=" + 1,
             success: function (data) {
+                $("#list").empty();
                 if (data != null) {
                     $.each(data.list, function (index, item) {
-
                         $("#list").append(  "<tr>" +
                                             "<td>#</td>" +
                                             "<td>" + item.title + "</td>" +
                                             "<td>" + item.createTime + "</td>" +
                                             "<td>" + item.clickCount + "</td>" +
                                             "<td>" +
-                                            '<button class="btn" onclick="Edit(' + item.id + ' );">view</button>' +
-                                            '<button class="btn" onclick="Edit(' + item.id + ' );">edit</button>' +
-                                            '<button class="btn" onclick="Edit(' + item.id + ' );">delete</button>'+
+                                            '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">view</button>' +
+                                            '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">edit</button>' +
+                                            '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">delete</button>'+
                                             "</tr>");
                     });
                     var pageCount = data.pageCount;       //
@@ -131,13 +130,13 @@
                         itemTexts: function (type, page, current) {
                             switch (type) {
                                 case "first":
-                                    return "首页";
+                                    return "first";
                                 case "prev":
-                                    return "上一页";
+                                    return "prev";
                                 case "next":
-                                    return "下一页";
+                                    return "next";
                                 case "last":
-                                    return "末页";
+                                    return "last";
                                 case "page":
                                     return page;
                             }
@@ -150,17 +149,18 @@
                                 type: "Post",
                                 data: "page=" + page,
                                 success: function (data1) {
+                                    $("#list").empty();
                                     if (data1 != null) {
-                                        $.each(data.list, function (index, item) {
+                                        $.each(data1.list, function (index, item) {
                                             $("#list").append(  "<tr>" +
                                                     "<td>#</td>" +
                                                     "<td>" + item.title + "</td>" +
                                                     "<td>" + item.createTime + "</td>" +
                                                     "<td>" + item.clickCount + "</td>" +
                                                     "<td>" +
-                                                    '<button class="btn" onclick="Edit(' + item.id + ' );">view</button>' +
-                                                    '<button class="btn" onclick="Edit(' + item.id + ' );">edit</button>' +
-                                                    '<button class="btn" onclick="Edit(' + item.id + ' );">delete</button>'+
+                                                    '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">view</button>' +
+                                                    '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">edit</button>' +
+                                                    '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">delete</button>'+
                                                     "</tr>");
                                         });
                                     }
@@ -168,7 +168,7 @@
                             });
                         }
                     };
-//                    $('#example').bootstrapPaginator(options);
+                    $('#example').bootstrapPaginator(options);
                 }
             }
         });
