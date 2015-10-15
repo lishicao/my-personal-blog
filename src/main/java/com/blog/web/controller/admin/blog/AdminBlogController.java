@@ -26,7 +26,7 @@ public class AdminBlogController {
 
     Integer pageSize = 8 ;
 
-    @RequestMapping( value = "listBlog")
+    @RequestMapping( value = "/listBlog")
     public @ResponseBody JSONObject getBlogWithPage( QueryBlogCondition queryBlogCondition ){
         try {
             JSONArray jsonArray = new JSONArray();

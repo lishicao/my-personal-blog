@@ -104,7 +104,7 @@
         $.ajax({
             url: "/admin/listBlog",
             datatype: 'json',
-            type: "Pos  t",
+            type: "Post",
             data: "page=" + 1,
             success: function (data) {
                 $("#list").empty();
