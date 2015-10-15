@@ -17,8 +17,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface BlogMapper {
-
-    public int getBlogCount( @Param("classificationId") Integer classificationId ,@Param("labelId") Integer labelId ) throws Exception;
-    public List<Blog> getBlogs( @Param("start")Integer start ,@Param("pageSize") Integer pageSize,@Param("classificationId") Integer classificationId ,@Param("labelId") Integer labelId ) throws Exception;
-    public List<Label> getLabels( @Param("blogId")Integer blogId );
+    public int getBlogCount( @Param("classificationId") Integer classificationId ,@Param("labelId") Integer labelId, @Param("keyword") String keyword ) throws Exception;
+    public List<Blog> getBlogs( @Param("start")Integer start ,@Param("pageSize") Integer pageSize,@Param("classificationId") Integer classificationId ,@Param("labelId") Integer labelId ,@Param("keyword") String keyword) throws Exception;
+    public Blog getBlogById( int id ) throws Exception;
 }

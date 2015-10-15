@@ -22,6 +22,9 @@
         <if test="labelId != null and labelId != 0 ">
             AND t_blog.id IN ( SELECT t_label.id FROM t_label WHERE t_label.id = #{labelId} )
         </if>
+        <if test="keyword != null and keyword.length() != 0 ">
+            AND t_blog.title LIKE '%#{keyword}%'
+        </if>
         ORDER BY create_time
         LIMIT #{start},#{pageSize}
     </select>
@@ -35,19 +38,13 @@
         <if test="labelId != null and labelId != 0 ">
             AND t_blog.id IN ( SELECT t_label.id FROM t_label WHERE t_label.id = #{labelId} )
         </if>
+        <if test="keyword != null and keyword.length() != 0 ">
+            AND t_blog.title LIKE '%#{keyword}%'
+        </if>
     </select>
 
-    <resultMap id="labelMap" type="com.blog.common.entity.blog.Label">
-        <result property="id" column="id"></result>
-        <result property="labelName" column="label_name"></result>
-    </resultMap>
-    <select id="getLabels" parameterType="int" resultMap="labelMap">
-        SELECT * FROM t_label
-        WHERE t_label.id IN
-        (
-          SELECT t_blog_label.label_id FROM t_blog_label
-          WHERE t_blog_label.blog_id = #{blogId}
-        )
+    <select id="getBlogById" resultMap="blogMap">
+        SELECT * FROM t_blog WHERE id = #{id}
     </select>
 
 </mapper>

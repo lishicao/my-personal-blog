@@ -9,6 +9,8 @@ public class QueryBlogCondition {
     Integer classificationId;
     Integer labelId;
     Integer page;
+    String keyWord;
+
 
     public Integer getClassificationId() {
         return classificationId;
@@ -32,5 +34,13 @@ public class QueryBlogCondition {
 
     public void setPage(Integer page) {
         this.page = page;
+    }
+
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public void setKeyWord(String keyWord) {
+        this.keyWord = keyWord;
     }
 }

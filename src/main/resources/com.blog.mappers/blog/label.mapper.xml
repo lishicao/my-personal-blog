@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mappers.blog.LabelMapper">
+    <resultMap id="labelMap" type="com.blog.common.entity.blog.Label">
+        <result property="id" column="id"></result>
+        <result property="labelName" column="label_name"></result>
+    </resultMap>
+    <select id="getLabels" parameterType="int" resultMap="labelMap">
+        SELECT * FROM t_label
+        WHERE t_label.id IN
+        (
+        SELECT t_blog_label.label_id FROM t_blog_label
+        WHERE t_blog_label.blog_id = #{blogId}
+        )
+    </select>
+</mapper>

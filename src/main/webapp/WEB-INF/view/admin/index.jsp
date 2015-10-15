@@ -1,3 +1,4 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +42,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/admin/index">Dashboard</a></li>
-                <li><a href="#">Settings</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
         </div>
     </div>
 </nav>
@@ -55,26 +52,32 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="#">Blogs<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">New Blog</a></li>
-                <li><a href="#">Blog Classification</a></li>
-                <li><a href="#">New Blog Classification</a></li>
-                <li><a href="#">Blog Label</a></li>
+                <li><a href="/admin/toAddBlog">New Blog</a></li>
+                <li><a href="/admin/listBlogClassification">Blog Classification</a></li>
+                <li><a href="/admin/toAddBlogClassification">New Blog Classification</a></li>
+                <li><a href="/admin/listBlogLabel">Blog Label</a></li>
             </ul>
 
             <ul class="nav nav-sidebar">
-                <li><a href="">Resources</a></li>
-                <li><a href="">New Resources</a></li>
-                <li><a href="">Resources Classification</a></li>
-                <li><a href="">New Resources Classification</a></li>
+                <li><a href="/admin/listResources">Resources</a></li>
+                <li><a href="/admin/toAddResources">New Resources</a></li>
+                <li><a href="/admin/listResourcesClassification">Resources Classification</a></li>
+                <li><a href="/admin/toResourcesClassification">New Resources Classification</a></li>
             </ul>
 
             <ul class="nav nav-sidebar">
-                <li><a href="">Comment</a></li>
-                <li><a href="">Write About Me</a></li>
+                <li><a href="/admin/toListComment">Comment</a></li>
+                <li><a href="/admin/toWriteAboutMe">Write About Me</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h3 class="page-header">Blogs</h3>
+            <h1 class="page-header">
+                Blogs
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
+            </h1>
+            <br>
             <div class="table-responsive">
                 <table id="data_table" class="table table-bordered table-striped">
                     <thead>
@@ -97,7 +100,6 @@
     </div>
 </div>
 
-
 <script>
     $(function () {
 //        var carId = 1;
@@ -116,9 +118,9 @@
                                             "<td>" + item.createTime + "</td>" +
                                             "<td>" + item.clickCount + "</td>" +
                                             "<td>" +
-                                            '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">view</button>' +
-                                            '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">edit</button>' +
-                                            '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">delete</button>'+
+                                            '<a href="/admin/detailBlog?blogId=' + item.id + '"><button class="btn btn-sm btn-default">view</button></a>'+
+                                            '<a href="/admin/toEditBlog?blogId=' + item.id + '"><button class="btn btn-sm btn-default">edit</button></a>'+
+                                            '<a href="/admin/toDeleteBlog?blogId=' + item.id + '"><button class="btn btn-sm btn-default">delete</button></a>'+
                                             "</tr>");
                     });
                     var pageCount = data.pageCount;       //
@@ -158,9 +160,9 @@
                                                     "<td>" + item.createTime + "</td>" +
                                                     "<td>" + item.clickCount + "</td>" +
                                                     "<td>" +
-                                                    '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">view</button>' +
-                                                    '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">edit</button>' +
-                                                    '<button class="btn btn-sm btn-primary" onclick="Edit(' + item.id + ' );">delete</button>'+
+                                                    '<a href="/admin/detailBlog?blogId=' + item.id + '"><button class="btn btn-sm btn-default">view</button></a>'+
+                                                    '<a href="/admin/toEditBlog?blogId=' + item.id + '"><button class="btn btn-sm btn-default">edit</button></a>'+
+                                                    '<a href="/admin/toDeleteBlog?blogId=' + item.id + '"><button class="btn btn-sm btn-default">delete</button></a>'+
                                                     "</tr>");
                                         });
                                     }

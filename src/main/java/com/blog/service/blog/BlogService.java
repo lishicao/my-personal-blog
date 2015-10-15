@@ -15,8 +15,12 @@ import java.util.List;
 public class BlogService {
     @Autowired
     BlogMapper blogMapper;
+    @Autowired
+    LabelService labelService;
+
+
     public int getBlogCount( QueryBlogCondition queryBlogCondition ) throws Exception {
-        return blogMapper.getBlogCount( queryBlogCondition.getClassificationId() , queryBlogCondition.getLabelId() );
+        return blogMapper.getBlogCount( queryBlogCondition.getClassificationId() , queryBlogCondition.getLabelId(),queryBlogCondition.getKeyWord() );
     }
 
     public List<Blog> getBlogs( QueryBlogCondition queryBlogCondition , Integer pageSize ) throws Exception {
@@ -24,11 +28,15 @@ public class BlogService {
         Integer labelId = queryBlogCondition.getLabelId();
         Integer start = (queryBlogCondition.getPage() -1) * pageSize;
 
-        List<Blog> blogs = blogMapper.getBlogs( start, pageSize, classficationId, labelId);
+        List<Blog> blogs = blogMapper.getBlogs( start, pageSize, classficationId, labelId,queryBlogCondition.getKeyWord());
         for( Blog blog : blogs){
-            blog.setLabels( blogMapper.getLabels(blog.getId()) );
+            blog.setLabels( labelService.getLabels(blog.getId()) );
         }
+        return blogs;
+    }
 
-        return blogMapper.getBlogs( start, pageSize, classficationId, labelId);
+    public Blog getBlogById( int id ) throws Exception{
+        Blog blog = blogMapper.getBlogById(id);
+        return blog;
     }
 }

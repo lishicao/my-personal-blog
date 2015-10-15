@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mappers.blog.ClassificationMapper">
+    <resultMap id="classificationMap" type="com.blog.common.entity.blog.BlogClassification">
+        <result property="id" column="id"></result>
+        <result property="classificationName" column="classification_name"></result>
+    </resultMap>
+
+    <select id="getBlogClassificationById" resultMap="classificationMap">
+        SELECT * FROM t_blog_classification WHERE id = #{id}
+    </select>
+</mapper>

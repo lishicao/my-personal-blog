@@ -4,10 +4,12 @@ import com.blog.common.dto.blog.QueryBlogCondition;
 import com.blog.common.entity.blog.Blog;
 import com.blog.common.util.PagiNation;
 import com.blog.service.blog.BlogService;
+import com.blog.service.blog.ClassificationService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,11 +25,13 @@ public class AdminBlogController {
 
     @Autowired
     BlogService blogService;
+    @Autowired
+    ClassificationService classificationService;
 
     Integer pageSize = 8 ;
 
     @RequestMapping( value = "/listBlog")
-    public @ResponseBody JSONObject getBlogWithPage( QueryBlogCondition queryBlogCondition ){
+    public @ResponseBody JSONObject getBlogsWithPage( QueryBlogCondition queryBlogCondition ){
         try {
             JSONArray jsonArray = new JSONArray();
             PagiNation pagiNation = new PagiNation();
@@ -63,6 +67,26 @@ public class AdminBlogController {
         catch (Exception ee ){
             System.out.println( ee.getMessage() );
             return null;
+        }
+    }
+
+    @RequestMapping( value = "/detailBlog")
+    public String detailBlog( Model model ,int blogId ){
+        try {
+            Blog blog = blogService.getBlogById(blogId);
+            String classification = classificationService.getBlogClassificationById(blog.getClassificationId()).getClassificationName();
+            model.addAttribute("id",blog.getId());
+            model.addAttribute("title",blog.getTitle());
+            model.addAttribute("content",blog.getHtmlContent());
+            model.addAttribute("createTime",blog.getCreateTime());
+            model.addAttribute("clickCount",blog.getClickCount());
+            model.addAttribute("labels",blog.getLabels());
+            model.addAttribute("classification",classification);
+            return "admin/blog/detail";
+        }
+        catch (Exception ee ){
+            model.addAttribute("errorMessage",ee.getMessage());
+            return "error";
         }
     }
 }
