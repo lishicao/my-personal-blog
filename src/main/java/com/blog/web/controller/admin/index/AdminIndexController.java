@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminIndexController {
     @RequestMapping(value = "/index" )
     public String index( Model model){
-        return "admin/index";
+        return "admin/blog/listBlog";
     }
 }

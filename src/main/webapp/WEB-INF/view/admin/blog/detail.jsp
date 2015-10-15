@@ -43,9 +43,6 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/admin/index">Dashboard</a></li>
       </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
     </div>
   </div>
 </nav>
@@ -54,7 +51,7 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Blogs<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/admin/index">Blogs<span class="sr-only">(current)</span></a></li>
         <li><a href="/admin/toAddBlog">New Blog</a></li>
         <li><a href="/admin/listBlogClassification">Blog Classification</a></li>
         <li><a href="/admin/toAddBlogClassification">New Blog Classification</a></li>
@@ -80,6 +77,9 @@
         <p class="lead">click count:   ${clickCount}</p>
         <p class="lead">classification:${classification}</p>
       </div>
+      <a href="/admin/index">
+        <button class="btn btn-success btn-lg center-block">返回</button>
+      </a>
     </div>
   </div>
 </div>

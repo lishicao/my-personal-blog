@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class ClassificationService {
     @Autowired
     ClassificationMapper classificationMapper;
-    public BlogClassification getBlogClassificationById( int id ) throws Exception{
+    public BlogClassification getBlogClassificationById( Integer id ) throws Exception{
         return classificationMapper.getBlogClassificationById(id);
     }
 }

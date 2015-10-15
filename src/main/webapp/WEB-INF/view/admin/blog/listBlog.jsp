@@ -8,14 +8,14 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../resources/self/image/cat.ico">
+    <link rel="icon" href="../../../../resources/self/image/cat.ico">
     <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../../../resources/self/css/dashboard.css" rel="stylesheet">
+    <link href="../../../../resources/self/css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -51,7 +51,7 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Blogs<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/admin/index">Blogs<span class="sr-only">(current)</span></a></li>
                 <li><a href="/admin/toAddBlog">New Blog</a></li>
                 <li><a href="/admin/listBlogClassification">Blog Classification</a></li>
                 <li><a href="/admin/toAddBlogClassification">New Blog Classification</a></li>

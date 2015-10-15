@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClassificationMapper {
-    public BlogClassification getBlogClassificationById( int id ) throws Exception;
+    public BlogClassification getBlogClassificationById( Integer id ) throws Exception;
 }

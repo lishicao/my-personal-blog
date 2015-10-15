@@ -2,6 +2,7 @@ package com.blog.web.controller.admin.blog;
 
 import com.blog.common.dto.blog.QueryBlogCondition;
 import com.blog.common.entity.blog.Blog;
+import com.blog.common.entity.blog.BlogClassification;
 import com.blog.common.util.PagiNation;
 import com.blog.service.blog.BlogService;
 import com.blog.service.blog.ClassificationService;
@@ -74,7 +75,9 @@ public class AdminBlogController {
     public String detailBlog( Model model ,int blogId ){
         try {
             Blog blog = blogService.getBlogById(blogId);
-            String classification = classificationService.getBlogClassificationById(blog.getClassificationId()).getClassificationName();
+            BlogClassification blogClassification = classificationService.getBlogClassificationById(blog.getClassificationId());
+            String classification = "";
+            if( blogClassification != null ) classification = blogClassification.getClassificationName();
             model.addAttribute("id",blog.getId());
             model.addAttribute("title",blog.getTitle());
             model.addAttribute("content",blog.getHtmlContent());
