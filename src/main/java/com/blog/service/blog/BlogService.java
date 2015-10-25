@@ -59,7 +59,7 @@ public class BlogService {
             reader = new BufferedReader(inputStreamReader);
 
             while ((tempLine = reader.readLine()) != null) {
-                resultBuffer.append(tempLine);
+                resultBuffer.append(tempLine + "\n");
             }
         } finally {
             if (outputStreamWriter != null) {
