@@ -1,7 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,11 +54,10 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/admin/index">Blogs<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/admin/toListBlog">Blogs<span class="sr-only">(current)</span></a></li>
                 <li><a href="/admin/toAddBlog">New Blog</a></li>
                 <li><a href="/admin/listBlogClassification">Blog Classification</a></li>
                 <li><a href="/admin/toAddBlogClassification">New Blog Classification</a></li>
-                <li><a href="/admin/listBlogLabel">Blog Label</a></li>
             </ul>
 
             <ul class="nav nav-sidebar">
@@ -73,9 +75,6 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">
                 Blogs
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
-                </form>
             </h1>
             <br>
             <div class="table-responsive">

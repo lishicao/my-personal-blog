@@ -12,6 +12,7 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-lgpl</artifactId>

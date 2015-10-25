@@ -7,7 +7,6 @@ import java.util.Date;
  */
 public class QueryBlogCondition {
     Integer classificationId;
-    Integer labelId;
     Integer page;
     String keyWord;
 
@@ -18,14 +17,6 @@ public class QueryBlogCondition {
 
     public void setClassificationId(Integer classificationId) {
         this.classificationId = classificationId;
-    }
-
-    public Integer getLabelId() {
-        return labelId;
-    }
-
-    public void setLabelId(Integer labelId) {
-        this.labelId = labelId;
     }
 
     public Integer getPage() {

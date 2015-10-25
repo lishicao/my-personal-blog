@@ -1,21 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../../resources/self/image/cat.ico">
-  <title>blog</title>
+  <link rel="icon" href="../../../../resources/self/image/cat.ico">
+  <title>Dashboard</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="../../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../../resources/self/css/dashboard.css" rel="stylesheet">
+  <link href="../../../../resources/self/css/dashboard.css" rel="stylesheet">
 
   <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
   <!--[if lt IE 9]>
@@ -51,8 +54,8 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active"><a href="/admin/index">Blogs<span class="sr-only">(current)</span></a></li>
-        <li><a href="/admin/toAddBlog">New Blog</a></li>
+        <li><a href="/admin/toListBlog">Blogs<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/admin/toAddBlog">New Blog</a></li>
         <li><a href="/admin/listBlogClassification">Blog Classification</a></li>
         <li><a href="/admin/toAddBlogClassification">New Blog Classification</a></li>
       </ul>
@@ -70,18 +73,25 @@
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <div>${content}</div>
-      <div class="alert alert-success">
-        <p class="lead">create time:   ${createTime}</p>
-        <p class="lead">click count:   ${clickCount}</p>
-        <p class="lead">classification:${classification}</p>
-      </div>
-      <a href="/admin/toListBlog">
-        <button class="btn btn-success btn-lg center-block">返回</button>
-      </a>
+      <h1 class="page-header">
+        New Blog
+      </h1>
+      <form action="/admin/addBlog" method="post">
+        <input type="text" class="form-control" name="title" placeholder="Title">
+        <textarea rows="23" cols="138" name="content">
+        </textarea>
+        <select name="classificationId" class="center-block">
+          <c:forEach items="${classifications}" var="item">
+            <option value="${item.id}">${item.classificationName}</option>
+          </c:forEach>
+        </select>
+        <input type="submit" class="btn-primary btn-lg center-block">
+      </form>
+
     </div>
   </div>
 </div>
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

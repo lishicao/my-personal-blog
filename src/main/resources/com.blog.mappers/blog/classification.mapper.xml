@@ -4,8 +4,27 @@
         <result property="id" column="id"></result>
         <result property="classificationName" column="classification_name"></result>
     </resultMap>
+    <delete id="deleteBlogClassification" parameterType="Integer">
+        DELETE * FROM t_blog_classification WHERE id = #{id}
+    </delete>
+
+    <update id="updateBlogClassification" parameterType="com.blog.common.entity.blog.BlogClassification">
+        UPDATE t_blog_classification SET classification_name = #{name} WHERE id = #{id}
+    </update>
 
     <select id="getBlogClassificationById" resultMap="classificationMap">
         SELECT * FROM t_blog_classification WHERE id = #{id}
     </select>
+
+    <select id="getBlogClassificationByName" resultMap="classificationMap">
+        SELECT * FROM t_blog_classification WHERE classification_name = #{name}
+    </select>
+
+    <select id="getBlogClassifications" resultMap="classificationMap">
+        SELECT * FROM t_blog_classification
+    </select>
+
+    <insert id="addBlogClassification" parameterType="com.blog.common.entity.blog.BlogClassification">
+        INSERT INTO t_blog_classification (classification_name) VALUES(#{name})
+    </insert>
 </mapper>

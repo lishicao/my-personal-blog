@@ -14,7 +14,6 @@ public class Blog {
     private Integer classificationId;
     private Date createTime;
     private Integer clickCount;
-    private List<Label> labels;
 
     public Integer getId() {
         return id;
@@ -72,11 +71,4 @@ public class Blog {
         this.clickCount = clickCount;
     }
 
-    public List<Label> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(List<Label> labels) {
-        this.labels = labels;
-    }
 }

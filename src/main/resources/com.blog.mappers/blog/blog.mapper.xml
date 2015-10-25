@@ -11,7 +11,10 @@
         <result property="clickCount" column="click_count"></result>
     </resultMap>
 
-
+    <insert id="addBlog" parameterType="com.blog.common.entity.blog.Blog">
+        INSERT INTO t_blog (title , content , content_html , classification_id )
+        VALUES ( #{title} , #{content} , #{htmlContent} , #{classificationId} )
+    </insert>
 
     <select id="getBlogs" parameterType="com.blog.common.dto.blog.QueryBlogCondition" resultMap="blogMap">
         SELECT * FROM t_blog
@@ -19,13 +22,10 @@
         <if test="classificationId != null and classificationId != 0 ">
             AND t_label.classification_id = #{classificationId}
         </if>
-        <if test="labelId != null and labelId != 0 ">
-            AND t_blog.id IN ( SELECT t_label.id FROM t_label WHERE t_label.id = #{labelId} )
-        </if>
         <if test="keyword != null and keyword.length() != 0 ">
             AND t_blog.title LIKE '%#{keyword}%'
         </if>
-        ORDER BY create_time
+        ORDER BY create_time DESC
         LIMIT #{start},#{pageSize}
     </select>
 
@@ -35,9 +35,6 @@
         <if test="classificationId != null and classificationId != 0 ">
             AND t_label.classification_id = #{classificationId}
         </if>
-        <if test="labelId != null and labelId != 0 ">
-            AND t_blog.id IN ( SELECT t_label.id FROM t_label WHERE t_label.id = #{labelId} )
-        </if>
         <if test="keyword != null and keyword.length() != 0 ">
             AND t_blog.title LIKE '%#{keyword}%'
         </if>
@@ -46,5 +43,18 @@
     <select id="getBlogById" resultMap="blogMap">
         SELECT * FROM t_blog WHERE id = #{id}
     </select>
+
+    <select id="getBlogByNameAndContent" resultMap="blogMap">
+        SELECT * FROM t_blog WHERE title = #{title} AND content = {content}
+    </select>
+
+    <delete id="deleteBlog">
+        DELETE * FROM t_blog WHERE id = #{blodId}
+    </delete>
+
+    <update id="updateBlog" parameterType="com.blog.common.entity.blog.Blog">
+        UPDATE t_blog SET title = #{title} , content = #{content} , content_html = #{htmlContent} , classfication_id = #{classificationId}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

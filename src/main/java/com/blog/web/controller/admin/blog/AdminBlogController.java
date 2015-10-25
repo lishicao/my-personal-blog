@@ -31,6 +31,45 @@ public class AdminBlogController {
 
     Integer pageSize = 8 ;
 
+    @RequestMapping( value = "/toAddBlog")
+    public String toAddBlog( Model model) {
+        try {
+            List<BlogClassification> blogClassifications = classificationService.getBlogClassifications();
+            model.addAttribute("classifications" ,blogClassifications);
+
+            return "admin/blog/addBlog";
+        }
+        catch (Exception ee ) {
+            model.addAttribute("errorMessage",ee.getMessage());
+            return "error";
+        }
+    }
+
+    @RequestMapping( value = "/addBlog")
+    public String addBlog( Model model , Blog blog ) {
+        try{
+            blogService.addBlog(blog);
+            return "admin/blog/listBlog";
+        }
+        catch (Exception ee ) {
+            model.addAttribute("errorMessage",ee.getMessage());
+            return "error";
+        }
+    }
+
+    @RequestMapping( value = "/toListBlog")
+    public String listBlog( Model model){
+        try {
+            List<BlogClassification> blogClassifications = classificationService.getBlogClassifications();
+            model.addAttribute("classifications", blogClassifications);
+            return "admin/blog/listBlog";
+        }
+        catch (Exception ee ) {
+            model.addAttribute("errorMessage",ee.getMessage());
+            return "error";
+        }
+    }
+
     @RequestMapping( value = "/listBlog")
     public @ResponseBody JSONObject getBlogsWithPage( QueryBlogCondition queryBlogCondition ){
         try {
@@ -83,7 +122,6 @@ public class AdminBlogController {
             model.addAttribute("content",blog.getHtmlContent());
             model.addAttribute("createTime",blog.getCreateTime());
             model.addAttribute("clickCount",blog.getClickCount());
-            model.addAttribute("labels",blog.getLabels());
             model.addAttribute("classification",classification);
             return "admin/blog/detail";
         }
